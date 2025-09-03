@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --orange: #CA7C4C;
+  --brown: #4B291A;
+  --sad-white: #CCC1A3;
+  --white: #F9DFC8;
+  --darker-blue: #112939;
+  --dark-blue: #588088;
+  --blue: #75948C;
+  --light-blue: #B6CFB9;
+  --yellow: #EAB05C;
+  --red: #D95022;
+
 }
 
-@theme inline {
+@font-face {
+  font-family: heading-font;
+  src: url(/fonts/VT323-Regular.ttf); 
+
+}
+@font-face {
+  font-family: subheading-font;
+  src: url(/fonts/BarlowCondensed-Light.ttf); 
+
+}
+@font-face {
+  font-family: body-font;
+  src: url(/fonts/OpenSans-Light.ttf); 
+
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 15px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--dark-blue);
+  border-radius: 10px; /* Rounded track */
+  
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--darker-blue);
+  border-radius: 10px; /* Rounded thumb */
+  border: 3px solid var(--dark-blue);
+}
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--orange);
+    --foreground: var(--white);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
