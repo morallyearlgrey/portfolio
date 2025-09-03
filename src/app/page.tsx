@@ -52,7 +52,7 @@ export default function Home() {
             </div>
 
             <div className="border-1 p-40">
-
+                <span className="text-white">WORK IN PROGRESS!!!!</span>
             </div>
           </div>
         </div>
