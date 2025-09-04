@@ -30,6 +30,11 @@
 
 }
 
+@font-face {
+  font-family: body-italic-font;
+  src: url(/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf);
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 15px;
 }

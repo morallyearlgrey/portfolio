@@ -2,12 +2,28 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
 
+import { Music, Play, Pause } from 'lucide-react';
+
 import { Navbar } from "@/components/navbar";
+
+import {Button} from "@/components/ui/button";
+
+const spotifyClient = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+
 
 export default function Home() {
 
-  const [currentPage, setCurrentPage] = useState<String>("");
   const [currentRole, setCurrentRole] = useState<String>("");
+  const [spotifySongName, setSpotifySongName] = useState<String>("bags");
+  const [spotifySongArtist, setSpotifySongArtist] = useState<String>("clairo");
+
+  useEffect(() => {
+  const script = document.createElement('script');
+  script.src = 'https://sdk.scdn.co/spotify-player.js';
+  script.async = true;
+  document.body.appendChild(script);
+}, []);
 
   return (
     <div className="fixed w-screen h-screen overflow-hidden">
@@ -29,12 +45,20 @@ export default function Home() {
           </div>
           
           <div className="bg-[var(--blue)] p-2 rounded-t-xl -translate-y-4 border-t-3 border-b-3 border-black">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row gap-x-2">
               <div className="px-4 w-1/2 bg-[var(--sad-white)] rounded-xl border-3 border-black">
-                <span className="font-[heading-font] text-black text-3xl">welcome to my {currentPage}</span>
+                <span className="font-[heading-font] text-black text-3xl">welcome to my home</span>
+              </div>
+              <div className="px-4 w-3/4 bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
+                {/* <Music className="text-black"/>
+                <span className="font-[heading-font] text-black text-3xl">playing {spotifySongName} by {spotifySongArtist}</span>
+                <Button onClick = {() => player.play()}className="hover:scale-110 transition-transform cursor-pointer"><Play className="text-black scale-150"/></Button>
+                <Button className="hover:scale-110 transition-transform cursor-pointer"><Pause className="text-black scale-150"/></Button> */}
               </div>
             </div>
           </div>
+
+          {/* <iframe data-testid="embed-iframe" style="border-radius:12px"  width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> */}
 
           <div className="w-full flex flex-1 justify-between h-full overflow-y-auto custom-scrollbar p-4 flex-col gap-y-8">
             <div className="flex flex-row">

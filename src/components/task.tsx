@@ -30,9 +30,10 @@ interface Tasks {
 
 interface TaskProps {
   course: string;
+  isAdmin: boolean;
 }
 
-export const Task = ({ course }: TaskProps) => {
+export const Task = ({ course, isAdmin }: TaskProps) => {
 
   const [tasks, setTasks] = useState<Tasks[]>([]);
   const [editTaskId, setEditTaskId] = useState<string | null>(null);
@@ -110,6 +111,7 @@ export const Task = ({ course }: TaskProps) => {
           {tasks.filter((task) => task.course === course).map((task) => (
             <div key={task._id} className="h-fit p-3 rounded-lg border-black border-3 bg-[var(--light-blue)] flex flex-col my-2">
               <div className="flex flex-row gap-x-2 place-items-center">
+                {isAdmin ? 
                 <Button onClick={() => toggleComplete(task)}>
                   {task.isComplete ? (
                     <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform">
@@ -119,6 +121,19 @@ export const Task = ({ course }: TaskProps) => {
                     <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform"></div>
                   )}
                 </Button>
+                :
+                <Button>
+                  {task.isComplete ? (
+                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)]">
+                      X
+                    </div>
+                  ) : (
+                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)]"></div>
+                  )}
+                </Button>
+                
+              }
+                
                 {editTaskId === task._id ? (
                   <>
                     <div className="flex flex-col gap-y-2">
@@ -142,14 +157,21 @@ export const Task = ({ course }: TaskProps) => {
                       <span className="font-[heading-font] text-3xl ">{task.subject}</span>
                       <span className="font-[subheading-font] text-2xl">{task.description}</span>
                     </div>
-                    <Button className="bg-[var(--yellow)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => startEdit(task)}>edit</Button>
+                    {isAdmin ? 
+                    <div>
+                     <Button className="bg-[var(--yellow)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => startEdit(task)}>edit</Button>
                     <Button className="bg-[var(--red)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => deleteTask(task)}>Delete</Button>
-                  </>
+                 </div>
+                 :
+                 <div></div>
+                  }
+                    </>
                 )}
               </div>
             </div>
           ))}
-          <Form {...form}>
+          {isAdmin ?
+          (<Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4 ">
               <FormField
                 control={form.control}
@@ -177,7 +199,11 @@ export const Task = ({ course }: TaskProps) => {
               />
               <Button type="submit" className="bg-[var(--orange)] cursor-pointer hover:scale-102 transition-transform text-white px-4 py-2 rounded-sm border-3 border-black font-[heading-font] text-2xl">add task</Button>
             </form>
-          </Form>
+          </Form>)
+          :
+          <div className=""></div>
+          }
+          
         </div>
       )}
     </div>
