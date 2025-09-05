@@ -25,7 +25,7 @@ export const ExperienceCard = ({ title, org, timeframe, desc, color, image }: Ex
             {isFront ?
                 <div className="">
                     <Image
-                        className="h-1/2 w-full object-cover object-center rounded-lg"
+                        className="h-49 w-full object-cover object-center rounded-t-lg"
                         src={image}
                         alt="About Us Photo"
                         width={2000}
@@ -42,19 +42,20 @@ export const ExperienceCard = ({ title, org, timeframe, desc, color, image }: Ex
                             </div>
                         ))
                         } */}
-                        <Button className={`font-[heading-font] text-xl bg-[var(--red)] border-3 border-black p-1 rounded-lg hover:scale-102 transition-transform cursor-pointer`} onClick={() => setIsFront(!isFront)}>click to see more!</Button>
+                        <Button className={`font-[heading-font] text-xl text-black bg-[var(--sad-white)]  border-3 border-black p-1 rounded-lg hover:scale-102 transition-transform cursor-pointer my-4 px-3`} onClick={() => setIsFront(!isFront)}>click to see more!</Button>
                     </div>
 
                     
                 </div>
                 :
 
-                <div className="p-3 w-auto h-fit flex flex-col ">
+                <div className="p-3 w-auto h-fit flex flex-col translate-y-5">
                     <div className="font-[body-font] text-base whitespace-pre-line">{desc}</div>
-                    <Button className={`justify-start font-[heading-font] text-xl bg-[var(--red)] w-fit border-3 border-black p-1 rounded-lg hover:scale-102 transition-transform cursor-pointer`} onClick={() => setIsFront(!isFront)}>click to go back!</Button>
+                    <Button className={`justify-start font-[heading-font] text-xl text-black bg-[var(--sad-white)] w-fit border-3 border-black p-1 rounded-lg hover:scale-102 transition-transform cursor-pointer my-4 px-3`} onClick={() => setIsFront(!isFront)}>click to go back!</Button>
                 </div>
             
             }
+            
             
 
         </div>

@@ -7,24 +7,39 @@ import { Music, Play, Pause } from 'lucide-react';
 import { Navbar } from "@/components/navbar";
 
 import {Button} from "@/components/ui/button";
+import { IntegerType } from "mongodb";
 
 const spotifyClient = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
 
 
 export default function Home() {
-
-  const [currentRole, setCurrentRole] = useState<String>("");
+  const roles = ["A FULL--STACK SOFTWARE ENGINEER", "AN EMBEDDED SYSTEMS DEVELOPER", "AN UI & UX APPLICATIONS DESIGNER"]
   const [spotifySongName, setSpotifySongName] = useState<String>("bags");
   const [spotifySongArtist, setSpotifySongArtist] = useState<String>("clairo");
+
+   const [count, setCount] = useState<number>(0);
+   const [isRed, setIsRed] = useState<boolean>(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCount(prevCount => (prevCount + 1)%roles.length);
+    }, 7900);
+
+    return () => clearInterval(intervalId);
+  }, []); 
+
 
   useEffect(() => {
   const script = document.createElement('script');
   script.src = 'https://sdk.scdn.co/spotify-player.js';
   script.async = true;
   document.body.appendChild(script);
+  // setCurrentRole(roles[(i+1)%roles.length]);
+
 }, []);
 
+ 
   return (
     <div className="fixed w-screen h-screen overflow-hidden">
       <Image
@@ -62,16 +77,41 @@ export default function Home() {
 
           <div className="w-full flex flex-1 justify-between h-full overflow-y-auto custom-scrollbar p-4 flex-col gap-y-8">
             <div className="flex flex-row">
+              <div className="flex flex-col w-6/12">
+
+              {isRed ? 
+              <>
               <img
-                src="/sprungerdev.gif"
+                src="/sprungerred.gif"
                 alt="sprunger"
-                className="w-8/12"
+                className=""
                 style={{ imageRendering: "pixelated" }}
               />
+              <Button onClick={() => {setIsRed(!isRed)}} className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-lg w-fit place-self-center h-10 hover:scale-102 cursor-pointer transition-transform bg-[var(--blue)] text-white">change outfit</Button>
+              </>
+              :
+              <>
+              <img
+                src="/sprungerblue.gif"
+                alt="sprunger"
+                className=""
+                style={{ imageRendering: "pixelated" }}
+              />
+              <Button onClick={() => {setIsRed(!isRed)}} className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-lg w-fit place-self-center h-10 hover:scale-102 cursor-pointer transition-transform bg-[var(--red)] text-white">change outfit</Button>
+              </>
+            }
+            
+              </div>
+
+              
               <div className="w-full h-full flex justify-center flex-col gap-4">
                 <div className="font-[heading-font] text-7xl">hi, my name is KAI</div>
-                <div className="font-[subheading-font] text-4xl">i am a {currentRole}</div>
-                <div className="font-[body-font] text-xl pr-15">sophomore majoring in computer science at the university of central florida</div>
+                  <div className="flex flex-row place-items-center gap-x-4">
+                  <div className="font-[subheading-font] text-4xl">i am</div>
+                  <span className="typewriter font-[subheading-font] text-4xl flex flex-wrap whitespace-normal break-words max-w-fit text-[var(--red)]">{roles[count]}</span>
+                </div>
+                
+                <div className="font-[body-italic-font] text-xl pr-15">sophomore majoring in computer science at the university of central florida</div>
               </div>
             </div>
 
