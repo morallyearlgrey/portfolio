@@ -26,6 +26,7 @@ import { Task } from "@/components/task";
 import { Calendar } from "@/components/calendar";
 
 import ResizableBoxWithLibrary from "@/components/resizeablebox";
+import { ProjectCard } from "@/components/projectcard";
 
 const PASSWORD = process.env.NEXT_PUBLIC_PASSWORD;
 
@@ -74,17 +75,19 @@ export default function ToDo() {
                 </div>
             </div>
 
-            <div className="flex flex-row gap-x-5 min-w-fit  overflow-x-clip flex-1 ">
-
-               
-
-
+                  <div className="gap-4 grid grid-cols-1 h-full">
+            
+                        <ProjectCard title="example 1" link="" img="/grid.png" color="#ffffff" desc="" skills={["skill 1", "skill 2"]} />
+                        
+                          
+            
+            
+                      </div>
+                    </div>
             </div>
             
             
           </div>
         </div>
-      </div>
-    </div>
   );
 }

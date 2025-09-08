@@ -79,27 +79,24 @@ export default function Home() {
             <div className="flex flex-row">
               <div className="flex flex-col w-6/12">
 
-              {isRed ? 
-              <>
-              <img
+              <Button onClick={() => {setIsRed(!isRed)}} className="h-full cursor-pointer hover:scale-102 transition-transform">
+              {isRed ?
+               <img
                 src="/sprungerred.gif"
                 alt="sprunger"
-                className=""
+                className="w-full"
                 style={{ imageRendering: "pixelated" }}
               />
-              <Button onClick={() => {setIsRed(!isRed)}} className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-lg w-fit place-self-center h-10 hover:scale-102 cursor-pointer transition-transform bg-[var(--blue)] text-white">change outfit</Button>
-              </>
               :
-              <>
-              <img
+               <img
                 src="/sprungerblue.gif"
                 alt="sprunger"
-                className=""
+                className="w-full"
                 style={{ imageRendering: "pixelated" }}
               />
-              <Button onClick={() => {setIsRed(!isRed)}} className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-lg w-fit place-self-center h-10 hover:scale-102 cursor-pointer transition-transform bg-[var(--red)] text-white">change outfit</Button>
-              </>
-            }
+              }
+             
+               </Button>
             
               </div>
 
