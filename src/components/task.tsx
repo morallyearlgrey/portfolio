@@ -102,7 +102,7 @@ export const Task = ({ course, isAdmin }: TaskProps) => {
   };
   return (
     <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black text-black">
-      <Button onClick={() => setIsShown(!isShown)} className="font-[heading-font] text-4xl w-full flex justify-between items-center">
+      <Button onClick={() => setIsShown(!isShown)} className=" h-fit font-[heading-font] text-2xl flex-wrap md:text-4xl w-full flex justify-between items-center">
         <span>{course}</span>
         <span className="hover:scale-102 cursor-pointer transition-transform">{isShown ? "▲" : "▼"}</span>
       </Button>
@@ -114,21 +114,21 @@ export const Task = ({ course, isAdmin }: TaskProps) => {
                 {isAdmin ? 
                 <Button onClick={() => toggleComplete(task)}>
                   {task.isComplete ? (
-                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform">
+                    <div className="font-[heading-font] text-lg md:text-2xl border-3 border-black p-1 md:p-3 rounded-sm flex items-center justify-center h-8 w-8 md:w-10 md:h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform">
                       X
                     </div>
                   ) : (
-                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform"></div>
+                    <div className="font-[heading-font] text-lg md:text-2xl border-3 border-black p-1 md:p-3 rounded-sm flex items-center justify-center h-8 w-8 md:w-10 md:h-10 bg-[var(--white)] cursor-pointer hover:scale-102 transition-transform"></div>
                   )}
                 </Button>
                 :
                 <Button>
                   {task.isComplete ? (
-                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)]">
+                    <div className="font-[heading-font] text-lg md:text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center h-8 w-8 md:w-10 md:h-10 bg-[var(--white)]">
                       X
                     </div>
                   ) : (
-                    <div className="font-[heading-font] text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center w-10 h-10 bg-[var(--white)]"></div>
+                    <div className="font-[heading-font] text-lg md:text-2xl border-3 border-black p-3 rounded-sm flex items-center justify-center h-8 w-8 md:w-10 md:h-10 bg-[var(--white)]"></div>
                   )}
                 </Button>
                 
@@ -138,29 +138,31 @@ export const Task = ({ course, isAdmin }: TaskProps) => {
                   <>
                     <div className="flex flex-col gap-y-2">
                       <input
-                        className="font-[heading-font] text-3xl border-3 border-black rounded px-2 mr-2"
+                        className="font-[heading-font] text-2xl md:text-3xl border-3 border-black rounded px-2 mr-2"
                         value={editSubject}
                         onChange={e => setEditSubject(e.target.value)}
                       />
                       <input
-                        className="font-[subheading-font] text-2xl border-3 border-black rounded px-2 mr-2"
+                        className="font-[subheading-font] text-2xl  md:text-2xl border-3 border-black rounded px-2 mr-2"
                         value={editDescription}
                         onChange={e => setEditDescription(e.target.value)}
                       />
                     </div>
-                    <Button className="bg-[var(--blue)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => saveEdit(task)}>Save</Button>
-                    <Button className="bg-[var(--dark-blue)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => setEditTaskId(null)}>Cancel</Button>
+                    <div className="">
+                    <Button className="bg-[var(--blue)] font-[heading-font] text-2xl md:text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => saveEdit(task)}>save</Button>
+                    <Button className="bg-[var(--dark-blue)] font-[heading-font] text-2xl  md:text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => setEditTaskId(null)}>cancel</Button>
+                  </div>
                   </>
                 ) : (
                   <>
                     <div className="flex flex-col basis-1/2">
-                      <span className="font-[heading-font] text-3xl ">{task.subject}</span>
-                      <span className="font-[subheading-font] text-2xl">{task.description}</span>
+                      <span className="font-[heading-font] text-2xl md:text-3xl ">{task.subject}</span>
+                      <span className="font-[subheading-font] text-xl md:text-2xl">{task.description}</span>
                     </div>
                     {isAdmin ? 
-                    <div>
-                     <Button className="bg-[var(--yellow)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => startEdit(task)}>edit</Button>
-                    <Button className="bg-[var(--red)] font-[heading-font] text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => deleteTask(task)}>Delete</Button>
+                    <div className="">
+                     <Button className="bg-[var(--yellow)] font-[heading-font] md:text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => startEdit(task)}>edit</Button>
+                    <Button className="bg-[var(--red)] font-[heading-font] md:text-2xl cursor-pointer hover:scale-102 transition-transform text-white border-3 border-black px-2 rounded-sm" onClick={() => deleteTask(task)}>delete</Button>
                  </div>
                  :
                  <div></div>

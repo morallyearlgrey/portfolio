@@ -87,13 +87,13 @@ export default function ToDo() {
           <div className="w-full flex flex-1 justify-between h-full overflow-y-auto custom-scrollbar p-4 flex-col gap-y-8">
             <div className="h-full">
                 <Image
-                    className="h-full w-full object-cover object-center opacity-85 rounded-lg border-3 border-black"
+                    className="h-full w-full object-cover object-center opacity-65 md:opacity-85 rounded-lg border-3 border-black"
                     src="/todo.gif"
                     alt="About Us Photo"
                     width={2000}
                     height={2000}
                 />
-                <div className="flex flex-col -translate-y-75 w-fit m-10 bg-[var(--darker-blue)] py-3 px-12 rounded-lg border-3 border-black">
+                <div className="flex flex-col -translate-y-75 w-full md:w-fit md:m-10 md:bg-[var(--darker-blue)] py-3 px-12 rounded-lg md:border-3 md:border-black text-[var(--white)] ">
                     <span className="font-[heading-font] text-7xl ">todo</span>
                     <div className="flex flex-row">
                       
@@ -109,7 +109,7 @@ export default function ToDo() {
                               </FormLabel>
                               <div className="flex flex-col">
                               <FormControl>
-                                  <Input type={"password"} {...field} />
+                                  <Input type={"password"} {...field} className="bg-[var(--sad-white)] text-black "/>
                               </FormControl>
                               <FormDescription>
                                 <span className="font-[body-italic-font]">{message}</span>
@@ -127,13 +127,13 @@ export default function ToDo() {
                 </div>
             </div>
 
-            <div className="flex flex-row gap-x-5 min-w-fit  overflow-x-clip flex-1 ">
+            <div className="grid grid-cols-1 xl:grid-cols-2 h-screen gap-5">
 
-                <div className="max-w-fit">
+                <div className="w-full">
                 {/* <ResizableBoxWithLibrary> */}
 
-                <div className="flex bg-[var(--dark-blue)] h-fit border-3 border-black rounded-lg flex-col min-w-fit">
-                    <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black font-[heading-font] text-4xl text-black">lists</div>
+                <div className="flex bg-[var(--dark-blue)] h-fit border-3 border-black rounded-lg flex-col">
+                    <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black font-[heading-font] md:text-4xl text-black text-3xl">lists</div>
                     
                     <Task course="general" isAdmin={admin}/>
                     <Task course="calculus II" isAdmin={admin}/>
@@ -148,15 +148,15 @@ export default function ToDo() {
                 {/* </ResizableBoxWithLibrary> */}
                 </div>
 
-                <div className="w-3/4">
-                <div className="bg-[var(--dark-blue)] h-screen border-3 border-black rounded-lg ">
+                <div className="w-full">
+                <div className="bg-[var(--dark-blue)] border-3 border-black rounded-lg">
                     <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black text-[var(--darker-blue)]">
                         <span className="font-[heading-font] text-4xl">calendar</span>
 
                     </div>
-                    <div className="flex justify-center max-w-full">
+                    <div className="flex justify-center h-screen">
 
-                      <Calendar className="rounded-lg border-3 border-black m-5 w-[90%] max-w-xl h-100" />
+                      <Calendar className="rounded-lg border-3 border-black m-5 w-[90%] max-w-xl" />
 
                     </div>
 
