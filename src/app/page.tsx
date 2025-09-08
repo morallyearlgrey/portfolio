@@ -23,7 +23,7 @@ export default function Home() {
               className="object-cover -z-10"
               priority
             />
-            <div className="justify-center text-center align-middle place-self-center m-20">
+            <div className="justify-center text-center align-middle place-self-center m-10 lg:m-20">
                <div className="bg-[var(--white)] white p-10 rounded-2xl">
                 <img
                     src="/sprungerred.gif"
