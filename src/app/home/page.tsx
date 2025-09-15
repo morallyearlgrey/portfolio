@@ -97,7 +97,7 @@ useEffect(() => {
                 <RotateCw className="text-black"/>
 
                 <Link href="/auth/signin">
-                  <LogInIcon className="text-black hover:scale-115 transition-transform cursor-pointer"/>
+                  <LogInIcon className="text-black hover:scale-115 transition-all cursor-pointer hover:text-[var(--red)]"/>
                 </Link>
                 
               </div>

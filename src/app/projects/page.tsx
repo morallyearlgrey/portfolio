@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-import {  ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon } from 'lucide-react';
+import {  ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon, LogInIcon } from 'lucide-react';
 // Music, Play, Pause,
 
 // import ResizableBoxWithLibrary from "@/components/resizeablebox";
@@ -68,7 +68,9 @@ useEffect(() => {
                 <ArrowLeft className="text-black"/>
                 <ArrowRight className="text-black"/>
                 <RotateCw className="text-black"/>
-                <HomeIcon className="text-black"/>
+                 <Link href="/auth/signin">
+                  <LogInIcon className="text-black hover:scale-115 transition-all cursor-pointer hover:text-[var(--red)]"/>
+                </Link>
               </div>
               <div className="px-4 w-full bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
                 <span className="font-[heading-font] text-black text-3xl">welcome to my projects</span>

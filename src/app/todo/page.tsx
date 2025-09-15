@@ -11,7 +11,7 @@ import { Calendar } from "@/components/calendar";
 
 // import ResizableBoxWithLibrary from "@/components/resizeablebox";
 // Music, Play, Pause, 
-import { ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon } from 'lucide-react';
+import { ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon, LogInIcon } from 'lucide-react';
 
 import { useSession } from "next-auth/react";
 
@@ -69,7 +69,9 @@ export default function ToDo() {
                     <ArrowLeft className="text-black"/>
                     <ArrowRight className="text-black"/>
                     <RotateCw className="text-black"/>
-                    <HomeIcon className="text-black"/>
+                   <Link href="/auth/signin">
+                  <LogInIcon className="text-black hover:scale-115 transition-all cursor-pointer hover:text-[var(--red)]"/>
+                </Link>
                   </div>
                   <div className="px-4 w-full bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
                     <span className="font-[heading-font] text-black text-3xl">welcome to my todo</span>
@@ -103,7 +105,7 @@ export default function ToDo() {
                 {/* <ResizableBoxWithLibrary> */}
 
                 <div className="flex bg-[var(--dark-blue)] h-fit border-3 border-black rounded-lg flex-col">
-                    <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black font-[heading-font] md:text-4xl text-black text-3xl">lists</div>
+                    <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black font-[heading-font] md:text-3xl text-black text-2xl">lists</div>
                     
                     <Task course="general" isAdmin={isLoggedIn}/>
                     <Task course="calculus II" isAdmin={isLoggedIn}/>
@@ -120,7 +122,7 @@ export default function ToDo() {
                   <div className="w-full">
                   <div className="bg-[var(--dark-blue)] border-3 border-black rounded-lg">
                       <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black text-[var(--darker-blue)]">
-                          <span className="font-[heading-font] text-4xl">calendar</span>
+                          <span className="font-[heading-font] text-2xl md:text-3xl">calendar</span>
 
                       </div>
                       <div className="flex justify-center h-screen">

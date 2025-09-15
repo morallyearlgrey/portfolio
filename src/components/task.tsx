@@ -102,7 +102,7 @@ export const Task = ({ course, isAdmin }: TaskProps) => {
   };
   return (
     <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black text-black">
-      <Button onClick={() => setIsShown(!isShown)} className=" h-fit font-[heading-font] text-2xl flex-wrap md:text-4xl w-full flex justify-between items-center">
+      <Button onClick={() => setIsShown(!isShown)} className=" h-fit font-[heading-font] text-2xl flex-wrap md:text-3xl w-full flex justify-between items-center">
         <span>{course}</span>
         <span className="hover:scale-102 cursor-pointer transition-transform">{isShown ? "▲" : "▼"}</span>
       </Button>
@@ -156,8 +156,8 @@ export const Task = ({ course, isAdmin }: TaskProps) => {
                 ) : (
                   <>
                     <div className="flex flex-col basis-1/2">
-                      <span className="font-[heading-font] text-2xl md:text-3xl ">{task.subject}</span>
-                      <span className="font-[subheading-font] text-xl md:text-2xl">{task.description}</span>
+                      <span className="font-[heading-font] text-xl md:text-2xl ">{task.subject}</span>
+                      <span className="font-[subheading-font] text-lg md:text-xl">{task.description}</span>
                     </div>
                     {isAdmin ? 
                     <div className="">
