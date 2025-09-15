@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import { usePathname } from "next/navigation";
 
 // add icons
 const routes: { title: string; href: string; icon: string}[] = [
-  { title: "HOME", href: "/", icon:""},
+  { title: "HOME", href: "/home", icon:""},
   { title: "EXPERIENCE", href: "/experience", icon:""},
   { title: "PROJECTS", href: "/projects", icon:""},
   { title: "TODO", href: "/todo", icon:""},
@@ -14,29 +15,54 @@ const routes: { title: string; href: string; icon: string}[] = [
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentTab, setCurrentTab] = useState("");
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    const match = routes.find((route) => route.href === pathname);
+    if (match) {
+      setCurrentTab(match.title);
+    }
+
+  }, []);
   
   return (
-    <div className="relative flex items-center justify-between gap-x-2">
+    <div className="relative flex items-center justify-between gap-x-2 z-50">
         <div className="p-3 bg-[var(--red)] rounded-full border-3 border-black"></div>
         <div className="p-3 bg-[var(--yellow)] rounded-full border-3 border-black"></div>
         <div className="flex w-full justify-between">
-        <div className="justify-end justify-items-end sm:flex hidden">
+        <div className="justify-end justify-items-end sm:flex hidden gap-x-2">
         {routes.map((route) => (
           <div key={route.href} className="">
             {/* add icon image here  */}
-            <Link
-              href={route.href}
+            {route.title===currentTab ?
+            (
+            <div
               className={
-                "lg:px-5 md:px-3 sm:px-1.5 text-3xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] hover:bg-[var(--light-blue)] rounded-lg transition-colors"
+                "px-10 text-3xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] cursor-default bg-[var(--blue)] z-50 rounded-t-lg transition-colors border-t-3 border-l-3 border-r-3 translate-y-1 border-black"
+              }
+              >
+              {route.title}
+            </div>
+            )
+            :
+            (
+              <Link
+              href={route.href}
+              onClick={() => setCurrentTab(route.title)}
+              className={
+                "px-5 text-2xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] hover:bg-[var(--light-blue)]  z-50 rounded-lg transition-colors translate-y-1 border-black"
               }
               >
               {route.title}
             </Link>
-            <span className="text-[var(--darker-blue)] text-3xl">|</span>
+
+            )
+            }
           </div>
         ))}
         </div>

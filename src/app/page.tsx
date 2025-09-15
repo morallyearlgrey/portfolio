@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
-import {useEffect, useState} from "react";
+// import {useEffect, useState} from "react";
 
-import { Music, Play, Pause } from 'lucide-react';
+// import { Music, Play, Pause } from 'lucide-react';
 
-import { Navbar } from "@/components/navbar";
+// import { Navbar } from "@/components/navbar";
 
-import {Button} from "@/components/ui/button";
-import { IntegerType } from "mongodb";
+// import {Button} from "@/components/ui/button";
+// import { IntegerType } from "mongodb";
 
-const spotifyClient = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+// const spotifyClient = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+// const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
 
 
 export default function Home() {

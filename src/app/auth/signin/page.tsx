@@ -1,63 +1,50 @@
 "use client";
+
+import { signIn } from "next-auth/react";
 import Image from "next/image";
-import {useEffect, useState} from "react";
+import {ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon } from 'lucide-react';
+import { Navbar } from "@/components/navbar";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
 
 //  Music, Play, Pause, 
-import {ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon, LogInIcon } from 'lucide-react';
-
-import { Navbar } from "@/components/navbar";
-
-import {Button} from "@/components/ui/button";
-import { IntegerType, Timestamp } from "mongodb";
-
-// const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
-
 import { useSession } from "next-auth/react";
 
-export default function Home() {
-   const { data: session, status } = useSession();
-    const isLoggedIn = status === "authenticated"; 
-    
-  const roles = ["A FULL--STACK SOFTWARE ENGINEER", "AN EMBEDDED SYSTEMS DEVELOPER", "AN UI & UX APPLICATIONS DESIGNER"]
-  // const [spotifySongName, setSpotifySongName] = useState<String>("bags");
-  // const [spotifySongArtist, setSpotifySongArtist] = useState<String>("clairo");
 
-   const [count, setCount] = useState<number>(0);
-   const [isRed, setIsRed] = useState<boolean>(true);
+export default function SigninPage() {
+      const { data: session, status } = useSession();
+        const isLoggedIn = status === "authenticated"; 
+      
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    await signIn("credentials", {
+      redirect: true,
+      username, // matches your MongoDB field
+      password,
+      callbackUrl: "/home", // redirect after signin
+    });
+  };
+
+      
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCount(prevCount => (prevCount + 1)%roles.length);
-    }, 7900);
+    const timer = setInterval(() => {
+      setCurTime(new Date()); // updates every second
+    }, 1000);
+  
+    return () => clearInterval(timer); // cleanup
+  }, []);
+  
+      const [curTime, setCurTime] = useState<Date>(new Date());
+  
 
-    return () => clearInterval(intervalId);
-  }, []); 
-
-
-
-    const [curTime, setCurTime] = useState<Date>(new Date());
-
-useEffect(() => {
-  const timer = setInterval(() => {
-    setCurTime(new Date()); // updates every second
-  }, 1000);
-
-  return () => clearInterval(timer); // cleanup
-}, []);
-
-
-  useEffect(() => {
-  const script = document.createElement('script');
-  script.src = 'https://sdk.scdn.co/spotify-player.js';
-  script.async = true;
-  document.body.appendChild(script);
-  // setCurrentRole(roles[(i+1)%roles.length]);
-
-}, []);
-
- 
   return (
+
     <div className="fixed w-screen h-screen overflow-hidden flex-col ">
       <Image
         src="/grid.png"
@@ -88,21 +75,17 @@ useEffect(() => {
               <Navbar/>
             </div>
           </div>
-          <div className="bg-[var(--dark-blue)]">
-          <div className="bg-[var(--blue)] p-2 rounded-t-xl  border-t-3 border-b-3 border-black z-0">
+          <div className="bg-[var(--dark-blue)] ">
+          <div className="bg-[var(--blue)] p-2 rounded-t-xl  border-t-3 border-b-3 border-black z-0 translate-y-1.5">
             <div className="flex flex-row gap-x-2">
-              <div className="px-4 w-fit rounded-xl  border-black flex-row flex place-items-center gap-x-3">
+              <div className="px-4  w-fit rounded-xl  border-black flex-row flex place-items-center gap-x-3">
                 <ArrowLeft className="text-black"/>
                 <ArrowRight className="text-black"/>
                 <RotateCw className="text-black"/>
-
-                <Link href="/auth/signin">
-                  <LogInIcon className="text-black hover:scale-115 transition-transform cursor-pointer"/>
-                </Link>
-                
+                <HomeIcon className="text-black"/>
               </div>
               <div className="px-4 w-full bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
-                <span className="font-[heading-font] text-black text-3xl">welcome to my home</span>
+                <span className="font-[heading-font] text-black text-3xl">sign in to see more!</span>
 
                 {/* <Music className="text-black"/>
                 <span className="font-[heading-font] text-black text-3xl">playing {spotifySongName} by {spotifySongArtist}</span>
@@ -113,52 +96,39 @@ useEffect(() => {
           </div>
           </div>
 
-          {/* <iframe data-testid="embed-iframe" style="border-radius:12px"  width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> */}
-
-          <div className="w-full flex flex-1 justify-between h-full overflow-y-auto custom-scrollbar p-4 flex-col gap-y-8">
-            <div className="flex flex-row">
-              <div className="flex flex-col w-6/12">
-
-              <Button onClick={() => {setIsRed(!isRed)}} className="h-full cursor-pointer hover:scale-102 transition-transform">
-              {isRed ?
-               <img
-                src="/sprungerred.gif"
-                alt="sprunger"
-                className="w-full"
-                style={{ imageRendering: "pixelated" }}
-              />
-              :
-               <img
-                src="/sprungerblue.gif"
-                alt="sprunger"
-                className="w-full"
-                style={{ imageRendering: "pixelated" }}
-              />
-              }
-             
-               </Button>
+          <div className="w-full flex flex-1 justify-between h-full overflow-y-auto translate-y-2  custom-scrollbar p-4 flex-col ">
             
-              </div>
+            <div className="h-screen flex flex-col  justify-center ">
+  <div className="place-items-center translate-y-2 p-10 bg-[var(--sad-white)] w-fit place-self-center rounded-lg border-3 border-black">
+              <RabbitIcon className="text-[var(--red)] m-2 " width={40} height={40}/>
 
-              
-              <div className="w-full h-full flex justify-center flex-col gap-4">
-                <div className="font-[heading-font] text-7xl">hi, my name is KAI</div>
-                  <div className="flex flex-row place-items-center gap-x-4">
-                  <div className="font-[subheading-font] text-4xl">i am</div>
-                  <span className="typewriter font-[subheading-font] text-4xl flex flex-wrap whitespace-normal break-words max-w-fit text-[var(--red)]">{roles[count]}</span>
-                </div>
-                
-                <div className="font-[body-italic-font] text-xl pr-15">sophomore majoring in computer science at the university of central florida</div>
-              </div>
-            </div>
-
-            <div className="border-1 p-40">
-                <span className="text-white">WORK IN PROGRESS!!!!</span>
-                
-            </div>
-            
-          </div>
           
+  <form onSubmit={handleSubmit} className="flex flex-col  gap-y-2">
+       <label>
+        <input
+          type="text"
+          value={username}
+          placeholder="username"
+          onChange={e => setUsername(e.target.value)}
+          required
+          className="border-3 border-black p-2 rounded-lg outline-0 text-xl text-black"
+        />
+      </label>
+      <label>
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+          className="border-3 border-black p-2 rounded-lg outline-0 text-xl text-black"
+        />
+      </label>
+      <Button className="font-[heading-font] text-3xl hover:scale-105 border-3 p-5 border-black bg-[var(--red)] transition-transform cursor-pointer">sign in</Button>
+    </form>
+</div>
+            </div>
+          </div>
         </div>
         <div className="border-3 border-black h-full w-11/12 mb-15  rounded-2xl">
               <div className="bg-[var(--brown)] h-full opacity-70  rounded-xl flex-row flex">
@@ -196,8 +166,11 @@ useEffect(() => {
 
               </div>
         </div>
-
       </div>
-    </div>
+        </div>
+   
   );
 }
+
+
+

@@ -1,4 +1,4 @@
-import { dbConnect } from '@/lib/mongodb';
+import clientPromise from '@/lib/mongodb';
 import { NextResponse } from 'next/server';
 import { MongoClient } from "mongodb";
 
@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 const dbName = "personal-portfolio"; 
 
 export async function GET() {
-  await dbConnect();
+  const client = await clientPromise;
 
   await client.connect();
   const db = client.db(dbName);

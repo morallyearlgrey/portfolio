@@ -1,4 +1,4 @@
-import { dbConnect } from '@/lib/mongodb';
+import clientPromise from '@/lib/mongodb';
 import { NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from "mongodb";
 
@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 const dbName = "personal-portfolio"; 
 
 export async function GET() {
-  await dbConnect();
+  const client = await clientPromise;
 
   await client.connect();
   const db = client.db(dbName);
@@ -23,7 +23,8 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  await dbConnect();
+  const client = await clientPromise;
+
 
   await client.connect();
   const db = client.db(dbName);
@@ -39,7 +40,8 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  await dbConnect();
+  const client = await clientPromise;
+
   await client.connect();
   const db = client.db(dbName);
   const { searchParams } = new URL(req.url);
@@ -55,7 +57,8 @@ export async function PATCH(req: Request) {
 }
 
 export async function PUT(req: Request) {
-  await dbConnect();
+  const client = await clientPromise;
+
   await client.connect();
   const db = client.db(dbName);
   const { searchParams } = new URL(req.url);
@@ -71,7 +74,8 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  await dbConnect();
+  const client = await clientPromise;
+
   await client.connect();
   const db = client.db(dbName);
   const { searchParams } = new URL(req.url);
