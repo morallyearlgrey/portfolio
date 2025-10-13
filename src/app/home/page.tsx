@@ -24,7 +24,6 @@ export default function Home() {
   // const [spotifySongArtist, setSpotifySongArtist] = useState<String>("clairo");
 
    const [count, setCount] = useState<number>(0);
-   const [isRed, setIsRed] = useState<boolean>(true);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -81,7 +80,7 @@ useEffect(() => {
 
       <div className="flex items-center justify-center h-screen w-screen py-5 gap-y-4 flex-col">
         
-        <div className="bg-[var(--brown)] w-10/12 h-10/12 rounded-xl border-3 border-black flex flex-col">
+        <div className="bg-[var(--darker-blue)] w-10/12 h-10/12 rounded-xl border-3 border-black flex flex-col">
 
           <div className="z-50">
             <div className="flex flex-row pr-3 pl-3 pt-1 rounded-t-xl gap-x-2 bg-[var(--dark-blue)] z-10">
@@ -102,7 +101,7 @@ useEffect(() => {
                 
               </div>
               <div className="px-4 w-full bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
-                <span className="font-[heading-font] text-black text-3xl">welcome to my home</span>
+                <span className="default font-[heading-font] text-black text-3xl">welcome to my home</span>
 
                 {/* <Music className="text-black"/>
                 <span className="font-[heading-font] text-black text-3xl">playing {spotifySongName} by {spotifySongArtist}</span>
@@ -116,44 +115,68 @@ useEffect(() => {
           {/* <iframe data-testid="embed-iframe" style="border-radius:12px"  width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> */}
 
           <div className="w-full flex flex-1 justify-between h-full overflow-y-auto custom-scrollbar p-4 flex-col gap-y-8">
-            <div className="flex flex-row">
+             <Image
+                                  className="h-full w-full translate-y-10 object-cover object-top opacity-60"
+                                  src="/clouds.png"
+                                  alt="About Us Photo"
+                                  width={2000}
+                                  height={2000}
+                              />
+            <div className="flex flex-row -translate-y-120">
+             
               <div className="flex flex-col w-6/12">
-
-              <Button onClick={() => {setIsRed(!isRed)}} className="h-full cursor-pointer hover:scale-102 transition-transform">
-              {isRed ?
-               <img
-                src="/sprungerred.gif"
-                alt="sprunger"
-                className="w-full"
-                style={{ imageRendering: "pixelated" }}
-              />
-              :
-               <img
-                src="/sprungerblue.gif"
-                alt="sprunger"
-                className="w-full"
-                style={{ imageRendering: "pixelated" }}
-              />
-              }
+              
+                      
+              <Button className="h-full hover:scale-102 transition-transform -translate-y-1">
+              <Image
+                                  className="w-full h-100 -translate-y-1/12 object-cover"
+                                  src="/kai-sprunger.png"
+                                  alt="About Us Photo"
+                                  width={2000}
+                                  height={2000}
+                                  quality={100}
+                              />
+               
              
                </Button>
             
               </div>
 
               
-              <div className="w-full h-full flex justify-center flex-col gap-4">
-                <div className="font-[heading-font] text-7xl">hi, my name is KAI</div>
-                  <div className="flex flex-row place-items-center gap-x-4">
-                  <div className="font-[subheading-font] text-4xl">i am</div>
-                  <span className="typewriter font-[subheading-font] text-4xl flex flex-wrap whitespace-normal break-words max-w-fit text-[var(--red)]">{roles[count]}</span>
+              <div className="w-full h-full flex flex-col">
+                
+                <div className="font-[heading-font] flex flex-col">
+                  <span className=" text-[70px] translate-y-15 text-[var(--white)]">hi, my name is</span>
+                  <span className=" text-[130px] text-[var(--light-blue)] ">KAI SPRUNGER</span>
+                  <span className="typewriter text-[40px] max-w-fit -translate-y-10">i am a software engineer</span>
+                  <img
+                src="/bunny.gif"
+                alt="sprunger"
+                className="w-1/3 -translate-y-6/12  place-self-end  hover:scale-102 transition-transform "
+                style={{ imageRendering: "pixelated" }}
+              />
+                  
                 </div>
                 
-                <div className="font-[body-italic-font] text-xl pr-15">sophomore majoring in computer science at the university of central florida</div>
+
+                  {/* <div className="flex flex-row place-items-center gap-x-4 -translate-y-5">
+                  <div className="font-[subheading-font] text-4xl">i am</div>
+                  <span className="typewriter font-[subheading-font] text-4xl flex flex-wrap whitespace-normal break-words max-w-fit text-[var(--red)]">{roles[count]}</span>
+                </div> */}
+                
+                
               </div>
+              
             </div>
 
-            <div className="border-1 p-40">
-                <span className="text-white">WORK IN PROGRESS!!!!</span>
+            <div className="-translate-y-150 flex flex-row justify-between basis-1/4 gap-3  ">
+                <div className="bg-[var(--light-blue)] h-70 font-[heading-font] text-[var(--blue)] w-full rounded-xl hover:scale-102 transition-all place-content-center text-center flex flex-col">
+                  <span className="text-8xl">3+</span>
+                  <span className="text-4xl">technical project winner</span>
+                </div>
+                <div className="bg-[var(--blue)] w-full h-50 p-5 font-[heading-font] rounded-xl hover:scale-102 transition-all"></div>
+                <div className="bg-[var(--dark-blue)] w-full h-50 p-5 font-[heading-font] rounded-xl hover:scale-102 transition-all"></div>
+                <div className="bg-[var(--darker-blue)] h-50 w-full p-5 font-[heading-font]  rounded-xl hover:scale-102 transition-all"></div>
                 
             </div>
             

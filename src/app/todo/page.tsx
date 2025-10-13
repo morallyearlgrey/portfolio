@@ -104,15 +104,15 @@ export default function ToDo() {
                 <div className="w-full">
                 {/* <ResizableBoxWithLibrary> */}
 
-                <div className="flex bg-[var(--dark-blue)] h-fit border-3 border-black rounded-lg flex-col">
-                    <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black font-[heading-font] md:text-3xl text-black text-2xl">lists</div>
+                <div className="flex bg-[var(--dark-blue)] h-fit border-3 border-black rounded-lg flex-col p-3">
+                    <div className="bg-[var(--sad-white)] pr-3 pl-3 mt-1 mb-1 rounded-lg border-3 border-black font-[heading-font] md:text-3xl text-black text-2xl">lists</div>
                     
-                    <Task course="general" isAdmin={isLoggedIn}/>
-                    <Task course="calculus II" isAdmin={isLoggedIn}/>
-                    <Task course="systems software" isAdmin={isLoggedIn}/>
-                    <Task course="discrete math" isAdmin={isLoggedIn}/>
-                    <Task course="theatre survey" isAdmin={isLoggedIn}/>
-                    <Task course="mobile app development" isAdmin={isLoggedIn}/>
+                    <Task course="general" colorSet="var(--orange)" isAdmin={isLoggedIn}/>
+                    <Task course="calculus II" colorSet="var(--blue)" isAdmin={isLoggedIn}/>
+                    <Task course="systems software" colorSet="var(--red)" isAdmin={isLoggedIn}/>
+                    <Task course="discrete math" colorSet="var(--yellow)" isAdmin={isLoggedIn}/>
+                    <Task course="theatre survey" colorSet="var(--white)" isAdmin={isLoggedIn}/>
+                    <Task course="mobile app development" colorSet="var(--light-blue)" isAdmin={isLoggedIn}/>
                     
                     
                 </div>
@@ -120,16 +120,24 @@ export default function ToDo() {
                 {/* </ResizableBoxWithLibrary> */}
                 </div>
                   <div className="w-full">
-                  <div className="bg-[var(--dark-blue)] border-3 border-black rounded-lg">
-                      <div className="bg-[var(--sad-white)] p-2 m-5 rounded-lg border-3 border-black text-[var(--darker-blue)]">
+                  <div className="bg-[var(--dark-blue)] border-3 border-black rounded-lg p-3">
+                      <div className="bg-[var(--sad-white)] pr-3 pl-3 mt-1 mb-1 rounded-lg border-3 border-black text-[var(--darker-blue)]">
                           <span className="font-[heading-font] text-2xl md:text-3xl">calendar</span>
 
                       </div>
-                      <div className="flex justify-center h-screen">
+                      <div className="flex justify-center h-screen ">
 
-                        <Calendar className="rounded-lg border-3 border-black m-5 w-[90%] max-w-xl" />
+                        <Calendar className="rounded-lg border-3 border-black mt-1 mb-1 w-full" />
+                       
 
                       </div>
+                       {/* <Image
+                    className="max-h-2 w-full border-3 "
+                    src="/todo.gif"
+                    alt="About Us Photo"
+                    width={2000}
+                    height={2000}
+                /> */}
 
                   </div>
                 </div>

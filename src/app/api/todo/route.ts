@@ -19,12 +19,10 @@ export async function GET() {
   } catch {
     return NextResponse.json({ success: false, error: 'Failed to fetch todo' }, { status: 500 });
   }
-
 }
 
 export async function POST(req: Request) {
   const client = await clientPromise;
-
 
   await client.connect();
   const db = client.db(dbName);
@@ -49,7 +47,7 @@ export async function PATCH(req: Request) {
   if (!id) return NextResponse.json({ success: false, error: 'Missing id' }, { status: 400 });
   try {
     const body = await req.json();
-  await db.collection('todo').updateOne({ _id: new ObjectId(id) }, { $set: { isComplete: body.isComplete } });
+    await db.collection('todo').updateOne({ _id: new ObjectId(id) }, { $set: { isComplete: body.isComplete } });
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ success: false, error: 'Failed to update task' }, { status: 400 });
@@ -66,7 +64,14 @@ export async function PUT(req: Request) {
   if (!id) return NextResponse.json({ success: false, error: 'Missing id' }, { status: 400 });
   try {
     const body = await req.json();
-  await db.collection('todo').updateOne({ _id: new ObjectId(id) }, { $set: { subject: body.subject, description: body.description } });
+    const updateFields: any = {};
+    
+    // Only update fields that are provided in the request
+    if (body.subject !== undefined) updateFields.subject = body.subject;
+    if (body.description !== undefined) updateFields.description = body.description;
+    if (body.order !== undefined) updateFields.order = body.order;
+    
+    await db.collection('todo').updateOne({ _id: new ObjectId(id) }, { $set: updateFields });
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ success: false, error: 'Failed to edit task' }, { status: 400 });
@@ -82,7 +87,7 @@ export async function DELETE(req: Request) {
   const id = searchParams.get('id');
   if (!id) return NextResponse.json({ success: false, error: 'Missing id' }, { status: 400 });
   try {
-  await db.collection('todo').deleteOne({ _id: new ObjectId(id) });
+    await db.collection('todo').deleteOne({ _id: new ObjectId(id) });
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ success: false, error: 'Failed to delete task' }, { status: 400 });

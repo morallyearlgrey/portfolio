@@ -14,15 +14,20 @@ const taskSchema = new mongoose.Schema({
     required: false,
     default: ""
   },
-  description: {
+  colorSet: {
     type: String,
-    required: false,
+    required: true,
     default: ""
   },
   isComplete: {
     type: Boolean,
     required: false,
     default: false
+  },
+  order: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 

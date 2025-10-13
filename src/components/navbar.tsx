@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
             (
             <div
               className={
-                "px-10 text-3xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] cursor-default bg-[var(--blue)] z-50 rounded-t-lg transition-colors border-t-3 border-l-3 border-r-3 translate-y-1 border-black"
+                "px-10 text-3xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] cursor-default bg-[var(--blue)] z-50 rounded-t-lg border-t-3 border-l-3 border-r-3 translate-y-1 border-black"
               }
               >
               {route.title}
@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
               href={route.href}
               onClick={() => setCurrentTab(route.title)}
               className={
-                "px-5 text-2xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] hover:bg-[var(--light-blue)]  z-50 rounded-lg transition-colors translate-y-1 border-black"
+                "px-5 text-2xl text-[var(--darker-blue)] items-center inline-flex font-[heading-font] hover:bg-[var(--light-blue)]  z-50 rounded-lg transition-all duration-400 translate-y-1 border-black"
               }
               >
               {route.title}
