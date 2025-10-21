@@ -3,25 +3,27 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 
-//  Music, Play, Pause, 
-import {ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon, LogInIcon } from 'lucide-react';
+import {ArrowLeft, ArrowRight, RotateCw, HomeIcon, RabbitIcon, LogInIcon, Music, Play, Pause } from 'lucide-react';
 
 import { Navbar } from "@/components/navbar";
 
 import {Button} from "@/components/ui/button";
 import { IntegerType, Timestamp } from "mongodb";
 
-// const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+const spotifySecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+
+import Audioplayer from "@/components/audioplayer";
 
 import { useSession } from "next-auth/react";
+// https://open.spotify.com/playlist/6GVL0jh0FnEUdlMewMF9uC?si=QUYpe_HzSVi4z8PA_QfB9Q&pi=GReYV9-PRYya1
 
 export default function Home() {
    const { data: session, status } = useSession();
     const isLoggedIn = status === "authenticated"; 
     
   const roles = ["A FULL--STACK SOFTWARE ENGINEER", "AN EMBEDDED SYSTEMS DEVELOPER", "AN UI & UX APPLICATIONS DESIGNER"]
-  // const [spotifySongName, setSpotifySongName] = useState<String>("bags");
-  // const [spotifySongArtist, setSpotifySongArtist] = useState<String>("clairo");
+  const [spotifySongName, setSpotifySongName] = useState<String>("");
+  const [spotifySongArtist, setSpotifySongArtist] = useState<String>("");
 
    const [count, setCount] = useState<number>(0);
 
@@ -102,7 +104,15 @@ useEffect(() => {
               </div>
               <div className="px-4 w-full bg-[var(--sad-white)] rounded-xl border-3 border-black flex flex-row items-center gap-x-2">
                 <span className="default font-[heading-font] text-black text-3xl">welcome to my home</span>
+                {/* <audio controls>
+                  <source src="" type="mpeg"></source>
 
+                </audio> */}
+
+                <Audioplayer>
+
+                </Audioplayer>
+                
                 {/* <Music className="text-black"/>
                 <span className="font-[heading-font] text-black text-3xl">playing {spotifySongName} by {spotifySongArtist}</span>
                 <Button onClick = {() => player.play()}className="hover:scale-110 transition-transform cursor-pointer"><Play className="text-black scale-150"/></Button>

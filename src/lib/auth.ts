@@ -58,10 +58,10 @@ export const authOptions: AuthOptions = {
   ],
    session: {
       strategy: "jwt", // jwt means sessions are stored as json web tokens rather than in the db
-      maxAge: 60,
+      maxAge: 60*60*5,
     },
     jwt: {
-      maxAge: 60,
+      maxAge: 60*60*5,
 
     },
   pages: {

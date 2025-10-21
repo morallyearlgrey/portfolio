@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.1",
     "@next-auth/mongodb-adapter": "^1.1.3",
@@ -22,6 +24,7 @@
     "lucide-react": "^0.542.0",
     "mongodb": "^6.19.0",
     "mongoose": "^8.18.0",
+    "newskit": "^7.7.3",
     "next": "15.5.2",
     "next-auth": "^4.24.11",
     "re-resizable": "^6.11.2",

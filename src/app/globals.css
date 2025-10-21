@@ -50,6 +50,7 @@
   background-color: var(--darker-blue);
   border-radius: 10px; /* Rounded thumb */
   border: 3px solid var(--dark-blue);
+  cursor: grab;
 }
 /* @theme inline {
   --color-background: var(--background);

@@ -54,7 +54,6 @@ export const Task = ({ course, isAdmin, colorSet }: TaskProps) => {
   };
 
   const updateTaskOrder = async (reorderedTasks: Tasks[]) => {
-    // Update order for all tasks in this course
     const updatePromises = reorderedTasks.map((task, index) => 
       fetch(`/api/todo?id=${task._id}`, {
         method: "PUT",
@@ -219,15 +218,17 @@ export const Task = ({ course, isAdmin, colorSet }: TaskProps) => {
               onDrop={(e) => isAdmin && handleDrop(e, task)}
               className={`h-fit pr-3 pl-3 pt-1 rounded-lg border-black border-3 bg-[var(--light-blue)] flex flex-row gap-x-2 items-start ${isAdmin ? 'cursor-move' : ''} ${draggedTask?._id === task._id ? 'opacity-50' : ''}`}
             >
-              {isAdmin && (
+              { (
                 <>
+                
                  <button
                     onClick={() => isAdmin && toggleComplete(task)}
                     disabled={!isAdmin}
-                    className={`hover:scale-105 font-[heading-font] text-lg md:text-2xl border-2 border-black rounded-sm flex items-center justify-center h-5 w-5 md:w-5 md:h-5 bg-[var(--white)] flex-shrink-0 mt-1 ${isAdmin ? 'cursor-pointer hover:scale-102 transition-transform' : ''}`}
+                    className={`font-[heading-font] text-lg md:text-2xl border-2 border-black rounded-sm flex items-center justify-center h-5 w-5 md:w-5 md:h-5 bg-[var(--white)] flex-shrink-0 mt-1 ${isAdmin ? 'cursor-pointer hover:scale-104 transition-transform' : ''}`}
                   >
                     {task.isComplete && "X"}
                   </button>
+                  
                  <textarea
                   defaultValue={task.subject}
                   onBlur={(e) => updateTaskText(task, e.target.value)}
@@ -237,6 +238,9 @@ export const Task = ({ course, isAdmin, colorSet }: TaskProps) => {
                   className={`p-1 font-[body-font] text-sm flex-1 bg-transparent border-b-2 border-transparent  outline-none resize-none whitespace-pre-wrap overflow-hidden ${isAdmin ? '' : 'cursor-default'}`}
                   style={{ fontFamily: 'monospace', minHeight: '2rem' }}
                 />
+
+                {isAdmin ? (
+                  <>
                   <div className="hover:scale-110 transition-transform cursor-grab active:cursor-grabbing mt-1">
                     <GripVertical className="w-5 h-5 md:w-5 md:h-5 text-[var(--black)]" />
                   </div>
@@ -246,6 +250,8 @@ export const Task = ({ course, isAdmin, colorSet }: TaskProps) => {
                   >
                     <Trash2 className="w-5 h-5 md:w-5 md:h-5 text-[var(--black)]" />
                   </button>
+                  </>
+                ) : (<></>)}
                 </>
               )}
               
